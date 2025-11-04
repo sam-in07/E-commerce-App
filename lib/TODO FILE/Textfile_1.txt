@@ -1,0 +1,38 @@
+Folder :
+
+ Core :
+   **Thorugh out App a use korbo
+   Api related ,
+   Image related  ,
+   Style related ,
+   Utility class ,
+   Network related
+   * Dart charaow onk kichu thake
+
+ Data :
+    *Api call related..pure dart
+
+ Domain :
+   Pure dart..widget related kichu nai with data sathe communicate kore
+   kichu jinis likha thake oi onujai data theke jinis ney
+   Domain/ models :
+   catagory brand product model
+   Domain/ repository :
+   Datatr sathe communicate
+
+
+ Presentation :
+  **Depends on feature
+   User interface connected with Domain
+   2 part :
+   View model => Block
+   User interface / Screen & widget
+ Design Pattern :
+  (Single  , Observer , Builder , Observer ) pattern
+  Fragmetic Programmer ~  Clean archi
+
+
+
+
+
+
