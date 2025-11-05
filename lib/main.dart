@@ -1,12 +1,14 @@
 import 'package:e_comm_app/core/network/api_client.dart';
-import 'package:e_comm_app/presentation/home/pages/MyHomePage.dart';
+import 'package:e_comm_app/presentation/home/pages/main_navigation_page.dart';
 import 'package:flutter/material.dart';
-
 import 'data/remote_datasource/brand_remote_data_source.dart';
 import 'data/remote_datasource/category_remote_data_source.dart';
 import 'data/remote_datasource/product_remote_data_source.dart';
 import 'data/remote_datasource/product_slider_remote_data_source.dart';
 import 'data/repository_imp/brand_repository_impl.dart';
+import 'data/repository_imp/category_repository_impl.dart';
+import 'data/repository_imp/product_repository_impl.dart';
+import 'data/repository_imp/product_slider_repository_impl.dart';
 
 void main() {
   runApp(const EcomApp());
@@ -37,6 +39,20 @@ class EcomApp extends StatelessWidget {
     );
 
     // Initialize repositories
+    final brandRepository = BrandRepositoryImpl(
+      remoteDataSource: brandRemoteDataSource,
+    );
+    final categoryRepository = CategoryRepositoryImpl(
+      remoteDataSource: categoryRemoteDataSource,
+    );
+    final productSliderRepository = ProductSliderRepositoryImpl(
+      remoteDataSource: productSliderRemoteDataSource,
+    );
+    final productRepository = ProductRepositoryImpl(
+      remoteDataSource: productRemoteDataSource,
+    );
+
+
 
 
     return MaterialApp(
@@ -65,7 +81,12 @@ class EcomApp extends StatelessWidget {
           ),
         ),
       ),
-      home:  MyHomePage(),
+      home:  MainNavigationPage(
+        brandRepository: brandRepository,
+        categoryRepository: categoryRepository,
+        productSliderRepository: productSliderRepository,
+        productRepository: productRepository,
+      ),
     );
   }
 }
