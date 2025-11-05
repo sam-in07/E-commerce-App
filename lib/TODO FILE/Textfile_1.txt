@@ -41,6 +41,8 @@ Folder :
  Repository : abstract class
 
 
+ Core , Data , Domain ==> Always first a complete korte hobe
+
 
 
 
