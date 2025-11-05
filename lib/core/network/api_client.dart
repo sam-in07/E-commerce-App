@@ -13,6 +13,7 @@ class ApiClient {
   //re-useable get api call
   Future<dynamic> get(String path, {Map<String, String>? headers}) async{
     final uri = Uri.parse('$baseUrl$path');
+
     final mergedHeaders = {
       ..._defaultHeaders,
       if (headers != null) ...headers,

@@ -11,6 +11,10 @@ Folder :
 
  Data :
     *Api call related..pure dart
+    Data/remote : APi call Imp korbo
+    resporatoy :
+    UI & data separte bhabe kaj korche
+
 
  Domain :
    Pure dart..widget related kichu nai with data sathe communicate kore
@@ -33,6 +37,9 @@ Folder :
 
 
  HTTP : moto package DIO..... DIO >>>>>>HTTP
+
+ Repository : abstract class
+
 
 
 
