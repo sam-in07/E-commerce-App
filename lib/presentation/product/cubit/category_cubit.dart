@@ -9,16 +9,17 @@ part 'category_state.dart';
 
 class CategoryCubit extends Cubit<CategoryState> {
   CategoryCubit({required this.repository}) : super(const CategoryState.initial());
-
+  //Repository Obj create .....composition
   final CategoryRepository repository;
-
+ //Api calling
   Future<void> loadCategories() async {
     emit(state.copyWith(status: CategoryStatus.loading));
 
     try {
       final categories = await repository.getCategories();
       emit(state.copyWith(status: CategoryStatus.success, categories: categories));
-    } catch (e) {
+    }
+    catch (e) {
       emit(
         state.copyWith(status: CategoryStatus.failure, errorMessage: e.toString()),
       );

@@ -22,7 +22,7 @@ class CategoriesPage extends StatelessWidget {
     );
   }
 }
-
+//page modhe views korteis
 class _CategoriesView extends StatelessWidget {
   const _CategoriesView();
 

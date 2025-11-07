@@ -20,3 +20,21 @@ product slider ar remote data source a  chole gesa .....list pathie dicche
 ===> home page show .........
 
 
+1.API CALL  
+  - HTTP CLient (GET/POST/PUT)
+  - MOdel
+  - Repository (Interface descrive the method)
+    - remote_datasource (Actual Call)
+    - repository_impl
+    
+1.1 API CALL 
+  - HTTP Client (Get?post/Put)
+  - Model 
+  - Remote Datasource (Actual Call)
+
+2. State Manage 
+  - BLOC-CUBIT 
+
+3. Pages
+  - re useable components
+
