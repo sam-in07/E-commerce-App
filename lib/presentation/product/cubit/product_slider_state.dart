@@ -1,15 +1,8 @@
+part of 'product_slider_cubit.dart';
 
-//import 'package:equatable/equatable.dart';
-
-//import '../../../domain/models/product_slider.dart';
-
-part of 'product_slider_bloc.dart';
 enum ProductSliderStatus { initial, loading, success, failure }
 
 class ProductSliderState extends Equatable {
-  final ProductSliderStatus status;
-  final List<ProductSlider> sliders;
-  final String? errorMessage;
   const ProductSliderState({
     required this.status,
     required this.sliders,
@@ -17,9 +10,13 @@ class ProductSliderState extends Equatable {
   });
 
   const ProductSliderState.initial()
-      : status = ProductSliderStatus.initial,
-        sliders = const [],
-        errorMessage = null;
+    : status = ProductSliderStatus.initial,
+      sliders = const [],
+      errorMessage = null;
+
+  final ProductSliderStatus status;
+  final List<ProductSlider> sliders;
+  final String? errorMessage;
 
   ProductSliderState copyWith({
     ProductSliderStatus? status,
@@ -34,7 +31,5 @@ class ProductSliderState extends Equatable {
   }
 
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
-
+  List<Object?> get props => [status, sliders, errorMessage];
 }

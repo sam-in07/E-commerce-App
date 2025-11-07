@@ -1,12 +1,13 @@
-
 import 'package:flutter/material.dart';
 
 import '../../../domain/repository/brand_repository.dart';
 import '../../../domain/repository/category_repository.dart';
 import '../../../domain/repository/product_repository.dart';
 import '../../../domain/repository/product_slider_repository.dart';
+import '../../product/pages/categories_page.dart';
 import 'home_page.dart';
-//bottom navi full
+
+
 class MainNavigationPage extends StatefulWidget {
   const MainNavigationPage({
     super.key,
@@ -14,11 +15,7 @@ class MainNavigationPage extends StatefulWidget {
     required this.categoryRepository,
     required this.productSliderRepository,
     required this.productRepository,
-  }) ;
-  // {
-  //   // TODO: implement MainNavigationPage
-  //   throw UnimplementedError();
-  // }
+  });
 
   final BrandRepository brandRepository;
   final CategoryRepository categoryRepository;
@@ -43,33 +40,30 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
         productSliderRepository: widget.productSliderRepository,
         productRepository: widget.productRepository,
       ),
-      // CategoriesPage(categoryRepository: widget.categoryRepository),
-      // const CartPage(),
-      // const ProfilePage(),
+      CategoriesPage(
+        categoryRepository: widget.categoryRepository,
+      ),
+      const _PlaceholderPage(title: 'Cart'),
+      const _PlaceholderPage(title: 'Profile'),
     ];
   }
-//page handling
+
   @override
   Widget build(BuildContext context) {
-    // Scaffold হলো একটি বেসিক ম্যাটেরিয়াল ডিজাইন লেআউট স্ট্রাকচার
     return Scaffold(
-      // body: IndexedStack(...) দিয়ে দেখানো হয় কোন পেজটি বর্তমানে দৃশ্যমান হবে
       body: IndexedStack(index: _currentIndex, children: _pages),
-
-      // bottomNavigationBar: NavigationBar(...) হলো নিচের নেভিগেশন বার
       bottomNavigationBar: NavigationBar(
-        selectedIndex: _currentIndex, // কোনটি বর্তমানে সিলেক্টেড আছে
-        onDestinationSelected: (index) { // যখন কোনো আইটেম ট্যাপ করা হয়
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (index) {
           setState(() {
-            _currentIndex = index; // _currentIndex-এর মান পরিবর্তন করে UI রি-বিল্ড করা হয়
+            _currentIndex = index;
           });
         },
-        // destinations হলো নেভিগেশন বারের আইটেমগুলো
         destinations: const [
           NavigationDestination(
-            icon: Icon(Icons.home_outlined), // সাধারণ আইকন
-            selectedIcon: Icon(Icons.home), // সিলেক্টেড состояния আইকন
-            label: 'Home', // আইটেমের নাম
+            icon: Icon(Icons.home_outlined),
+            selectedIcon: Icon(Icons.home),
+            label: 'Home',
           ),
           NavigationDestination(
             icon: Icon(Icons.category_outlined),
@@ -90,7 +84,59 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
       ),
     );
   }
-
 }
 
-// Removed unused placeholder page
+class _PlaceholderPage extends StatelessWidget {
+  const _PlaceholderPage({required this.title});
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Scaffold(
+      appBar: AppBar(title: Text(title)),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              _getIconForTitle(title),
+              size: 64,
+              color: colorScheme.onSurfaceVariant,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              '$title Page',
+              style: theme.textTheme.headlineSmall?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Coming Soon',
+              style: theme.textTheme.bodyLarge?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  IconData _getIconForTitle(String title) {
+    switch (title) {
+      case 'Categories':
+        return Icons.category;
+      case 'Cart':
+        return Icons.shopping_cart;
+      case 'Profile':
+        return Icons.person;
+      default:
+        return Icons.help_outline;
+    }
+  }
+}
